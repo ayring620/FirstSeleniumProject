@@ -1,0 +1,48 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn test selenium-example.js
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/Users/apple/Downloads/chromedriver_mac64
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.13.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/apple/Selenium/FirstProject/package.json: Unexpected token / in JSON at position 112
+      at JSON.parse (<anonymous>)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "firstproject",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      // "test": "echo \"Error: no test specified\" && exit 1",
+      "test": "mocha"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chromedriver": "^109.0.0",
+      "geckodriver": "^3.2.0",
+      "selenium-webdriver": "^4.8.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

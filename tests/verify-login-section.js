@@ -47,7 +47,11 @@ suite(function (env) {
 
       assert.equal(resultText.includes("Welcome To Manager's Page of Guru99 Bank"), true);
       assert.equal(resultText.includes("Manger Id : " + userId), true);
-      
+
+
+      const title = await driver.getTitle();
+      assert.equal(title, "Guru99 Bank Manager HomePage");
+            
     });
 
     it('should display error message when login with invalid userId ', async function () {

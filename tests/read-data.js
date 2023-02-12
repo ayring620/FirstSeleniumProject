@@ -5,10 +5,11 @@ const parseExcel = (fileName, sheetName) => {
     return XLSX.utils.sheet_to_json(excelData.Sheets[sheetName]);
 };
 
-parseExcel("../data/verify-login-data.xls", "Data").forEach(element =>{
-    console.log(element);
-});
+// parseExcel("../data/verify-login-data.xls", "Data").forEach(element =>{
+//     console.log(element);
+// });
 
+module.exports = { parseExcel };
 
 
 

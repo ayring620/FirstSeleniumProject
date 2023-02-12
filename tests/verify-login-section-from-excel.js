@@ -58,5 +58,41 @@ suite(function (env) {
             
     });
 
+    it('should display error message when login with invalid userId ', async function () {
+
+      const dataFromExcel = parseExcel("../data/verify-login-data.xls", "Data"); 
+      
+      for (let i = 1; i < dataFromExcel.length; i++) {
+        userId = dataFromExcel[i].username;
+        password = dataFromExcel[i].password;
+
+        const userIdField = await driver.findElement(By.name("uid"));
+
+        await driver.actions()
+          .sendKeys(userIdField, userId)
+          .perform();
+
+
+        const passwordField = await driver.findElement(By.name("password"));
+
+        await driver.actions()
+          .sendKeys(passwordField, password)
+          .perform();
+
+
+        const loginBtn = await driver.findElement(By.name("btnLogin"));
+
+        await loginBtn.click();
+
+        let alert = await driver.switchTo().alert();
+        let alertText= await alert.getText();
+        console.log("Alert message is:", alertText);
+
+        assert.equal(alertText.includes("User or Password is not valid"), true);
+
+        alert.accept();
+
+      }
+    });
   });
 });

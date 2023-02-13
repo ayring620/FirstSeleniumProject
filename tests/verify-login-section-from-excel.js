@@ -21,48 +21,58 @@ suite(function (env) {
 
     it('should display successful information when login with valid userId and password', async function () {
 
-      const dataFromExcel = parseExcel("../data/verify-login-data.xls", "Data"); 
+      const dataFromExcel = parseExcel("../data/verify-login-data.xls", "Valid Data"); 
+      
+      for(let i = 0; i < dataFromExcel.length; i++) {
         
-      userId = dataFromExcel[0].username;
-      password = dataFromExcel[0].password;
+        userId = dataFromExcel[i].username;
+        password = dataFromExcel[i].password;
 
-      const userIdField = await driver.findElement(By.name("uid"));
+        const userIdField = await driver.findElement(By.name("uid"));
 
-      await driver.actions()
-        .sendKeys(userIdField, userId)
-        .perform();
-
-
-      const passwordField = await driver.findElement(By.name("password"));
-
-      await driver.actions()
-        .sendKeys(passwordField, password)
-        .perform();
+        await driver.actions()
+          .sendKeys(userIdField, userId)
+          .perform();
 
 
-      const loginBtn = await driver.findElement(By.name("btnLogin"));
+        const passwordField = await driver.findElement(By.name("password"));
 
-      await loginBtn.click();
-
-
-      const resultText = await driver.findElement(By.xpath("/html[1]/body[1]/table[1]/tbody[1]/tr[1]/td[1]/table[1]"))
-                                     .getText();
-       
-
-      assert.equal(resultText.includes("Welcome To Manager's Page of Guru99 Bank"), true);
-      assert.equal(resultText.includes("Manger Id : " + userId), true);
+        await driver.actions()
+          .sendKeys(passwordField, password)
+          .perform();
 
 
-      const title = await driver.getTitle();
-      assert.equal(title, "Guru99 Bank Manager HomePage");
+        const loginBtn = await driver.findElement(By.name("btnLogin"));
+
+        await loginBtn.click();
+
+
+        const resultText = await driver.findElement(By.xpath("/html[1]/body[1]/table[1]/tbody[1]/tr[1]/td[1]/table[1]"))
+                                      .getText();
+        
+
+        assert.equal(resultText.includes("Welcome To Manager's Page of Guru99 Bank"), true);
+        assert.equal(resultText.includes("Manger Id : " + userId), true);
+
+
+        const title = await driver.getTitle();
+        assert.equal(title, "Guru99 Bank Manager HomePage");
+
+        const logoutBtn = await driver.findElement(By.linkText("Log out"));
+
+        await logoutBtn.click();
+
+        let alert = await driver.switchTo().alert();
+        await alert.accept();      
+      };
             
     });
 
     it('should display error message when login with invalid userId ', async function () {
 
-      const dataFromExcel = parseExcel("../data/verify-login-data.xls", "Data"); 
+      const dataFromExcel = parseExcel("../data/verify-login-data.xls", "Invalid Data"); 
       
-      for (let i = 1; i < dataFromExcel.length; i++) {
+      for (let i = 0; i < dataFromExcel.length; i++) {
         userId = dataFromExcel[i].username;
         password = dataFromExcel[i].password;
 

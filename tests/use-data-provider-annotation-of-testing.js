@@ -2,24 +2,29 @@
 const {By, Builder} = require('selenium-webdriver');
 const {suite} = require('selenium-webdriver/testing');
 const assert = require("assert");
-const validData =[
-  {username: 'mngr473254',
-   password:'ydugupy',
+const validData = [
+  {
+    username: 'mngr473254',
+    password:'ydugupy',
   },
-  {username: 'mngr473254',
-   password:'ydugupy',
+  {
+    username: 'mngr473254',
+    password:'ydugupy',
   },
 ];
 
-const invalidData =[
-  {username: 'valid',
-   password: 'invalid',
+const invalidData = [
+  {
+    username: 'valid',
+    password: 'invalid',
   },
-  {username: 'invalid',
-  password: 'valid',
+  {
+    username: 'invalid',
+    password: 'valid',
   },
-  {username: 'invalid',
-  password: 'invalid',
+  {
+    username: 'invalid',
+    password: 'invalid',
   },
 ];
 

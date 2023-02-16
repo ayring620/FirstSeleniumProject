@@ -2,6 +2,7 @@
 const {By, Builder} = require('selenium-webdriver');
 const {suite} = require('selenium-webdriver/testing');
 const assert = require("assert");
+const fs = require('fs');
 const validData = [
   {
     username: 'mngr473254',
@@ -81,6 +82,10 @@ suite(function (env) {
 
         const title = await driver.getTitle();
         assert.equal(title, "Guru99 Bank Manager HomePage");
+
+        const screenshot = await driver.takeScreenshot();
+        fs.writeFileSync("./screenshots/valid-result.png", screenshot, "base64");
+
 
         const logoutBtn = await driver.findElement(By.linkText("Log out"));
 

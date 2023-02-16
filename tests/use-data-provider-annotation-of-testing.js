@@ -84,7 +84,7 @@ suite(function (env) {
         assert.equal(title, "Guru99 Bank Manager HomePage");
 
         const screenshot = await driver.takeScreenshot();
-        fs.writeFileSync("./screenshots/valid-result.png", screenshot, "base64");
+        fs.writeFileSync("./screenshots/valid-result-" + i + ".png", screenshot, "base64");
 
 
         const logoutBtn = await driver.findElement(By.linkText("Log out"));
